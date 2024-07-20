@@ -1,0 +1,18 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Otro CSS o configuraciones de Tailwind CSS */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ 
+body {
+  margin: 0;
+  background-color: rgb(250, 250, 250);
+  font-family: 'Jost', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
