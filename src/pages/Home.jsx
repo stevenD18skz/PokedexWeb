@@ -8,6 +8,7 @@ import NavBar from "../components/NavBar";
 import CardPokemon from "../components/CardPokemon";
 import SearchBar from "../components/SearchBar";
 import LoadingIcon from "../components/LoadingIcon";
+import SideBar from "../components/SideBar";
 
 export function HomePage() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -19,13 +20,14 @@ export function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 21; // Número de Pokémon por página
 
+
   useEffect(() => {
     const fetchPokemonData = async () => {
       try {
         setIsLoading(true); // Set loading to true before the fetch
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=61"
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
         );
         const results = response.data.results;
 
@@ -63,6 +65,8 @@ export function HomePage() {
     fetchPokemonData();
   }, []);
 
+
+
   const getEvolutionChain = (chain, currentPokemon) => {
     let preEvolution = "nn";
     let evolution = "nn";
@@ -84,6 +88,8 @@ export function HomePage() {
     return { preEvolution, evolution };
   };
 
+
+  
   useEffect(() => {
     const personajesFiltrados = pokemonList.filter((poke) =>
       poke?.name.toLowerCase().includes(characterSearch.toLowerCase())
@@ -113,6 +119,8 @@ export function HomePage() {
   return (
     <div className="bg-gray-500 font-mono min-h-screen">
       <NavBar />
+      <SideBar></SideBar>
+
       <div className="w-8/12 m-auto p-4 bg-gray-300 min-h-screen">
         <SearchBar
           characterSearch={characterSearch}

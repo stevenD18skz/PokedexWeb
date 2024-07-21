@@ -16,6 +16,8 @@ export function PokemonVista() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  //relative top-32
+
   useEffect(() => {
     const fetchPokemonData = async () => {
       try {
@@ -51,10 +53,29 @@ export function PokemonVista() {
     <div className="bg-gray-500 font-mono">
       <NavBar></NavBar>
 
-      <div className="w-8/12 m-auto p-4 bg-green-500 min-h-screen flex">
-        <div className="w-full rounded-xl bg-gray-100 text-center">
-          <img className="z-10 m-auto" src={pokemonData.image} alt="image" />
+      <div className="w-8/12 m-auto p-4 bg-red-500">
 
+
+
+        <button
+          onClick={() => navigate("/home")}
+          className="m-8 p-2 px-3 rounded bg-gray-800 text-white"
+        >
+          Volver
+        </button>
+
+
+        <p className="capitalize text-6xl text-gray-200 font-mono">{pokemonData.name}</p>
+
+
+
+        <div className="z-10">
+          <img src={pokemonData.image} alt="image" />
+        </div>
+
+
+
+        <div className="w-full p-8 pt-24 rounded-xl bg-gray-100 text-center">
           <p className="text-center font-bold my-6 text-3xl text-green-700">
             ABOUT
           </p>
@@ -85,14 +106,10 @@ export function PokemonVista() {
               </div>
             </div>
           ))}
-
-          <button
-            onClick={() => navigate("/home")}
-            className="mt-4 p-2 bg-blue-500 text-white rounded"
-          >
-            Volver
-          </button>
         </div>
+
+
+
       </div>
     </div>
   );

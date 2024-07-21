@@ -22,9 +22,11 @@ export default function NavBar() {
     };
   }, []);
 
+
+  
   return (
     <nav
-      className={`bg-gray-800 p-4 sticky top-0 z-50 origin-top-left
+      className={`bg-gray-800 p-4 sticky top-0 z-50 origin-top-left h-25
       duration-700 transform transition-transform
       ${isScrolled ? "rounded-3xl w-1/12 top-4 m-4" : ""}
     `}
@@ -36,7 +38,7 @@ export default function NavBar() {
       >
         {!isScrolled ? (
           <div className="text-white text-xl font-bold">
-            <a href="/">MiSitio</a>
+            <a href="/">PokeDex</a>
           </div>
         ) : (
           ""

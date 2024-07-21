@@ -13,7 +13,8 @@ export default function SearchBar({ characterSearch, setCharacterSearch }) {
             type="text"
             placeholder="Search here"
             className="w-full rounded-md px-2 py-1 
-            focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+            focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent
+            "
             value={characterSearch}
             name={characterSearch}
             onChange={(e) => setCharacterSearch(e.target.value)}
