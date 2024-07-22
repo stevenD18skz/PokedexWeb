@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 export default function SideBar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,21 +18,24 @@ export default function SideBar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-dvh${
-        isOpen ? "w-48" : "w-20"
-      } pt-16 bg-gray-800 transition-all duration-300 ease-in-out`}
+      className={`fixed top-0 left-0 h-dvh 
+      ${ isOpen ? "w-48" : "w-20"}
+      pt-16 bg-gray-800 transition-all duration-300 ease-in-out`}
     >
-      <button 
-      className="text-white text-2xl"
-      onClick={toggleMenu}>
-        ☰
-      </button>
+      <div className="m-auto text-center">
+        <button 
+        className="text-white text-5xl"
+        onClick={toggleMenu}>
+          ☰
+        </button>
+      </div>
+
 
       <ul
         className={`flex flex-col justify-evenly h-full w-full bg-gray-800 text-white rounded-lg`}
       >
         {opcionesBar.map((op, index) => (
-          <li>
+          <li key={index}>
             <a href={op[2]} className="block p-2">
               <div
                 className={`flex ${

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function SearchBar({ characterSearch, setCharacterSearch }) {
   return (
-    <div className="w-11/12 mb-4 p-2 pb-6 mx-auto">
+    <div className="w-full mb-4 py-2 pb-6 mx-auto">
       <div
         id="search-bar"
         className="w-120 bg-white rounded-md shadow-xl z-10"

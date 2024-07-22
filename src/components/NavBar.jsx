@@ -27,7 +27,7 @@ export default function NavBar() {
   return (
     <nav
       className={`bg-gray-800 p-4 sticky top-0 z-50 origin-top-left h-25
-      duration-700 transform transition-transform
+      transition-all duration-500 ease-in-out
       ${isScrolled ? "rounded-3xl w-1/12 top-4 m-4" : ""}
     `}
     >

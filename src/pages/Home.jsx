@@ -27,7 +27,7 @@ export function HomePage() {
         setIsLoading(true); // Set loading to true before the fetch
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=151"
+          "https://pokeapi.co/api/v2/pokemon?limit=200"
         );
         const results = response.data.results;
 
@@ -127,9 +127,9 @@ export function HomePage() {
           setCharacterSearch={setCharacterSearch}
         />
 
-        {isLoading ? (
-          <LoadingIcon />
-        ) : (
+        {isLoading 
+        ? ( <LoadingIcon /> ) 
+        : (
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
               {currentItems.map((pokemon) => (

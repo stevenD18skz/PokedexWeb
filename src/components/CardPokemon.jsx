@@ -21,7 +21,7 @@ export default function CardPokemon({ data }) {
     <div
       className={`
       w-full bg-gray-200 rounded-3xl shadow-xl shadow-gray-500/50 overflow-hidden 
-    hover:shadow-green-600/70 transform transition duration-500 hover:-translate-y-3 hover:scale
+    hover:shadow-gray-600/70 transform transition duration-500 hover:-translate-y-3 hover:scale
     `}
     >
       <a href={`http://localhost:5173/pokedex/${data.name}`}>
