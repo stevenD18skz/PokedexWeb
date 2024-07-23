@@ -22,14 +22,9 @@ export default function NavBar() {
     };
   }, []);
 
-
-  
   return (
     <nav
-      className={`bg-gray-800 p-4 sticky top-0 z-50 origin-top-left h-25
-      transition-all duration-500 ease-in-out
-      ${isScrolled ? "rounded-3xl w-1/12 top-4 m-4" : ""}
-    `}
+      className={`h-25 sticky top-0 z-50 w-full origin-top-left bg-gray-900 p-4 transition-all duration-300 ease-in-out ${isScrolled ? "-translate-y-24" : ""} `}
     >
       <div
         className={`container mx-auto flex justify-${
@@ -37,7 +32,7 @@ export default function NavBar() {
         } items-center`}
       >
         {!isScrolled ? (
-          <div className="text-white text-xl font-bold">
+          <div className="text-xl font-bold text-white">
             <a href="/">PokeDex</a>
           </div>
         ) : (
@@ -45,16 +40,16 @@ export default function NavBar() {
         )}
 
         <div className={`relative ${isScrolled ? "block" : "md:hidden"}`}>
-          <button onClick={toggleMenu} className="text-white text-2xl">
+          <button onClick={toggleMenu} className="text-2xl text-white">
             ☰
           </button>
 
           {/* Menu desplegable */}
           <ul
-            className={`absolute top-full mt-1 w-48 bg-gray-700 text-white rounded-lg shadow-lg transition-transform duration-300 ${
+            className={`absolute top-full mt-1 w-48 rounded-lg bg-gray-700 text-white shadow-lg transition-transform duration-300 ${
               isOpen ? "scale-100" : "scale-0"
             } ${
-              isScrolled ? "origin-top-left right" : "origin-top-right right-0"
+              isScrolled ? "right origin-top-left" : "right-0 origin-top-right"
             }`}
           >
             <li>
@@ -82,7 +77,7 @@ export default function NavBar() {
 
         {isScrolled ? null : (
           <div className="hidden md:flex md:items-center md:space-x-6">
-            <ul className="flex md:items-center md:space-x-6 ">
+            <ul className="flex md:items-center md:space-x-6">
               <li>
                 <a href="/home" className="text-white hover:text-gray-400">
                   Inicio

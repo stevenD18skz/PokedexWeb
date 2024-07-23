@@ -10,20 +10,30 @@ import NavBar from "../components/NavBar";
 import LoadingIcon from "../components/LoadingIcon";
 
 export function PokemonVista() {
-  const { poke } = useParams(); // Obtiene el ID o nombre del obra del pokemon
-  const [pokemonData, setPokemonData] = useState([]);
+  const { poke } = useParams();
+  const [pokemonData, setPokemonData] = useState({
+    id: "",
+    name: "",
+    types: "",
+    image: "",
+    stats: "",
+  });
 
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  //relative top-32
+  const chain = [
+    { name: "caterpie", level: 0 },
+    { name: "metapod", level: 7 },
+    { name: "butterfree", level: 10 },
+  ];
 
   useEffect(() => {
     const fetchPokemonData = async () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${poke}`
+          `https://pokeapi.co/api/v2/pokemon/${poke}`,
         );
         const results = response.data;
 
@@ -49,91 +59,25 @@ export function PokemonVista() {
     return <LoadingIcon></LoadingIcon>;
   }
 
-  
-  
-
-
-  
-
-  
-
   return (
-    <div className="bg-gradient-to-r from-gray-700 via-gray-900 to-black min-h-screen font-mono text-gray-200">
-      <NavBar />
-
-      <div className="w-11/12 md:w-8/12 lg:w-6/12 m-auto p-4 bg-red-600 rounded-lg shadow-lg mt-10 relative overflow-hidden">
-        {/* Contenedor de la imagen sobresaliendo */}
-        <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 z-40">
-          <img
-            src={pokemonData.image}
-            alt="image"
-            className="rounded-full shadow-lg border-4 border-red-600"
-          />
-        </div>
-
-        <div className="pt-24 pb-8 relative z-20 bg-gray-800 rounded-xl shadow-md">
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 via-green-500 to-slate-800 font-mono">
+      <NavBar></NavBar>
+      <div className="m-auto w-full rounded-lg bg-green-800 p-4 shadow-lg md:w-8/12 xl:w-10/12">
+        {/* HEADER */}
+        <div className="flex justify-center">
           <button
             onClick={() => navigate("/home")}
-            className="m-8 p-2 px-3 rounded bg-gray-800 hover:bg-gray-700 transition-all duration-300 text-white"
+            className="my-auto mr-4 rounded-full p-2 text-gray-200 shadow-lg transition-all duration-300 hover:text-cyan-500"
           >
-            Volver
+            🢘
           </button>
 
-          <p className="capitalize text-6xl text-gray-200 font-bold text-center my-6">
+          <p className="my-6 text-center text-6xl font-bold capitalize text-gray-200">
             {pokemonData.name}
           </p>
-
-          <div className="w-full p-8 pt-24 rounded-xl bg-gray-800 text-center shadow-lg mt-6">
-            <p className="font-bold my-6 text-3xl text-green-400">ABOUT</p>
-            <p className="font-bold my-6 text-3xl text-green-400">BASE STATS</p>
-
-            {pokemonData.stats.map((stat, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center w-10/12 m-auto mb-4 p-2 bg-gray-700 rounded-lg shadow-md"
-              >
-                <p className="w-1/4 border-r-2 border-solid border-gray-600 pr-2">
-                  {stat.stat.name.toUpperCase()}
-                </p>
-                <div className="flex justify-evenly w-3/4 items-center">
-                  <p className="w-1/5">
-                    {stat.base_stat.toString().length === 2
-                      ? "0" + stat.base_stat
-                      : "" + stat.base_stat}
-                  </p>
-                  <div className="w-8/12 h-6 rounded-full bg-green-400 overflow-hidden">
-                    <div
-                      className="rounded-full h-full bg-green-700"
-                      style={{
-                        width: `${((stat.base_stat * 100) / 160).toString()}%`,
-                      }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
-      </div>
-    </div>
-  );
 
-  return (
-    <div className="bg-gradient-to-r from-gray-700 via-gray-900 to-black min-h-screen font-mono text-gray-200">
-      <NavBar />
-
-      <div className="w-11/12 md:w-8/12 lg:w-6/12 m-auto p-4 bg-red-600 rounded-lg shadow-lg mt-10">
-        <button
-          onClick={() => navigate("/home")}
-          className="m-8 p-2 px-3 rounded bg-gray-800 hover:bg-gray-700 transition-all duration-300 text-white"
-        >
-          Volver
-        </button>
-
-        <p className="capitalize text-6xl text-gray-200 font-bold text-center my-6">
-          {pokemonData.name}
-        </p>
-
+        {/* image */}
         <div className="z-10 flex justify-center">
           <img
             src={pokemonData.image}
@@ -142,35 +86,72 @@ export function PokemonVista() {
           />
         </div>
 
-        <div className="w-full p-8 pt-24 rounded-xl bg-gray-800 text-center shadow-lg mt-6">
-          <p className="font-bold my-6 text-3xl text-green-400">ABOUT</p>
-          <p className="font-bold my-6 text-3xl text-green-400">BASE STATS</p>
+        {/* stats */}
+        <div className="mt-6 w-full rounded-xl bg-gray-300 p-8 pt-24 text-center shadow-lg">
+          <p className="my-6 text-3xl font-bold text-green-400">ABOUT</p>
+          <p className="my-6 text-3xl font-bold text-green-400">BASE STATS</p>
 
           {pokemonData.stats.map((stat, index) => (
             <div
               key={index}
-              className="flex justify-between items-center w-10/12 m-auto mb-4 p-2 bg-gray-700 rounded-lg shadow-md"
+              className="m-auto mb-4 flex w-10/12 items-center justify-between rounded-lg bg-gray-200 p-2 shadow-md"
             >
               <p className="w-1/4 border-r-2 border-solid border-gray-600 pr-2">
                 {stat.stat.name.toUpperCase()}
               </p>
-              <div className="flex justify-evenly w-3/4 items-center">
+              <div className="flex w-3/4 items-center justify-evenly">
                 <p className="w-1/5">
                   {stat.base_stat.toString().length === 2
                     ? "0" + stat.base_stat
                     : "" + stat.base_stat}
                 </p>
-                <div className="w-8/12 h-6 rounded-full bg-green-400 overflow-hidden">
+                <div className="h-6 w-8/12 overflow-hidden rounded-full bg-slate-500">
                   <div
-                    className="rounded-full h-full bg-green-700"
+                    className="h-full rounded-full"
                     style={{
-                      width: `${((stat.base_stat * 100) / 160).toString()}%`,
+                      width: `${(stat.base_stat * 100) / 160}%`,
+                      backgroundColor:
+                        (stat.base_stat * 100) / 160 > 66
+                          ? "#388E3C"
+                          : (stat.base_stat * 100) / 160 > 33
+                            ? "#FBC02D"
+                            : "#D32F2F",
                     }}
                   ></div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* line evolution */}
+        <div className="my-28 w-full rounded-xl bg-gray-400 py-12 text-center">
+          <h2 className="text-4xl">EVOLUTION</h2>
+          <div className="mt-8 flex items-center justify-evenly">
+            <div className="">
+              <img
+                className=""
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"
+                alt="primera forma"
+              />
+            </div>
+            <p className="rounded-full bg-gray-300 px-4 py-1">16 Lvl.</p>
+            <div className="">
+              <img
+                className=""
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+                alt="primera forma"
+              />
+            </div>
+            <p className="rounded-full bg-gray-300 px-4 py-1">32 Lvl.</p>
+            <div className="">
+              <img
+                className=""
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
+                alt="primera forma"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -18,21 +18,16 @@ export default function SideBar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-dvh 
-      ${ isOpen ? "w-48" : "w-20"}
-      pt-16 bg-gray-800 transition-all duration-300 ease-in-out`}
+      className={`fixed left-0 top-0 h-dvh ${isOpen ? "w-48" : "w-20"} bg-gray-800 pt-16 transition-all duration-300 ease-in-out`}
     >
-      <div className="m-auto text-center">
-        <button 
-        className="text-white text-5xl"
-        onClick={toggleMenu}>
+      <div className="m-auto hidden text-center">
+        <button className="text-5xl text-white" onClick={toggleMenu}>
           ☰
         </button>
       </div>
 
-
       <ul
-        className={`flex flex-col justify-evenly h-full w-full bg-gray-800 text-white rounded-lg`}
+        className={`flex h-full w-full flex-col justify-evenly rounded-lg bg-gray-800 text-white`}
       >
         {opcionesBar.map((op, index) => (
           <li key={index}>
@@ -40,7 +35,7 @@ export default function SideBar() {
               <div
                 className={`flex ${
                   isOpen ? "flex-row justify-center" : "flex-col items-center"
-                } rounded-md hover:bg-gray-500 text-center`}
+                } rounded-md text-center hover:bg-gray-500`}
               >
                 <p className="text-4xl">{op[0]}</p>
                 <p className={`${isOpen ? "my-auto ml-2" : "text-sm"}`}>
