@@ -10,6 +10,8 @@ import SearchBar from "../components/SearchBar";
 import LoadingIcon from "../components/LoadingIcon";
 import Pagination from "../components/Pagination";
 
+//importacion de hooks y contextos
+
 export function HomePage() {
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemonFiltred, setPokemonFiltred] = useState([]);

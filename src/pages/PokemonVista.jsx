@@ -136,30 +136,28 @@ export function PokemonVista() {
         <div className="my-28 w-full rounded-xl bg-gray-100 py-12 text-center shadow-lg">
           <h2 className="text-4xl text-gray-700">EVOLUTION</h2>
           <div className="mt-8 flex items-center justify-evenly">
-            {chain.map((evo, index) => (
-              <React.Fragment key={index}>
-                <div className="flex flex-col items-center">
-                  <img
-                    className="bg-green-00 rounded-full border-4"
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                      evo.name === "caterpie"
-                        ? 10
-                        : evo.name === "metapod"
-                          ? 11
-                          : 12
-                    }.png`}
-                    alt={evo.name}
-                  />
-                  <h3 className="capitalize text-gray-700">{evo.name}</h3>
-                  <TypeSquare types={["grass", "poison"]} />
-                </div>
-                {index < chain.length - 1 && (
-                  <p className="mx-4 rounded-full bg-gray-300 px-4 py-1">
-                    {chain[index + 1].level} Lvl.
-                  </p>
-                )}
-              </React.Fragment>
-            ))}
+            {pokemon.evolutionChain && pokemon.evolutionChain.length > 0 ? (
+              pokemon.evolutionChain.map((evo, index) => (
+                <React.Fragment key={index}>
+                  <div className="flex flex-col items-center">
+                    <img
+                      className="bg-green-00 rounded-full border-4"
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evo.id}.png`}
+                      alt={evo.name}
+                    />
+                    <h3 className="capitalize text-gray-700">{evo.name}</h3>
+                    <TypeSquare types={["grass", "poison"]} />
+                  </div>
+                  {index < pokemon.evolutionChain.length - 1 && (
+                    <p className="mx-4 rounded-full bg-gray-300 px-4 py-1">
+                      {pokemon.evolutionChain[index + 1].level} Lvl.
+                    </p>
+                  )}
+                </React.Fragment>
+              ))
+            ) : (
+              <p>Loading evolution data...</p>
+            )}
           </div>
         </div>
       </div>
