@@ -1,6 +1,7 @@
 //Importacion de bibliotecas
 import React from "react";
 import { useState, useEffect } from "react";
+import { dataBar } from "../utils/typeColors";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,13 +9,6 @@ export default function SideBar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const opcionesBar = [
-    ["★", "PokeDex", "/home"],
-    ["✪", "Cal de Daño", "/damageCalculator"],
-    ["✰", "Cal de Captura", "/"],
-    ["❂", "Quiz", "/"],
-  ];
 
   return (
     <div
@@ -29,7 +23,7 @@ export default function SideBar() {
       <ul
         className={`flex h-full w-full flex-col justify-evenly rounded-lg bg-gray-800 text-white`}
       >
-        {opcionesBar.map((op, index) => (
+        {dataBar.map((op, index) => (
           <li key={index}>
             <a href={op[2]} className="block p-2">
               <div

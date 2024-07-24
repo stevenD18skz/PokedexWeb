@@ -22,12 +22,57 @@ export function HomePage() {
   const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
+    const getEvolutionChain = (chain, currentPokemon) => {
+      let preEvolution = "nn";
+      let evolution = "nn";
+      const findEvolutions = (
+        chain,
+        currentPokemon,
+        previousPokemon = null,
+      ) => {
+        if (chain.species.name === currentPokemon) {
+          if (previousPokemon) {
+            preEvolution = previousPokemon;
+          }
+          if (chain.evolves_to.length > 0) {
+            evolution = chain.evolves_to[0].species.name;
+          }
+        } else {
+          chain.evolves_to.forEach((evoChain) => {
+            findEvolutions(evoChain, currentPokemon, chain.species.name);
+          });
+        }
+      };
+      findEvolutions(chain, currentPokemon);
+      return { preEvolution, evolution };
+    };
+
+    const getEvolutionChainFull = (chain) => {
+      const res = [];
+      const findEvolutions = (chain, level = 0) => {
+        const newElement = { name: chain.species.name, level };
+        res.push(newElement);
+
+        if (Array.isArray(chain.evolves_to) && chain.evolves_to.length > 0) {
+          chain.evolves_to.forEach((evolution) => {
+            const evolutionLevel =
+              evolution.evolution_details.length > 0
+                ? evolution.evolution_details[0].min_level
+                : 0;
+            findEvolutions(evolution, evolutionLevel);
+          });
+        }
+      };
+      findEvolutions(chain);
+      return res;
+    };
+
     const fetchPokemonData = async () => {
       try {
         setIsLoading(true); // Set loading to true before the fetch
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=40",
+          "https://pokeapi.co/api/v2/pokemon?limit=12",
         );
         const results = response.data.results;
 
@@ -69,49 +114,6 @@ export function HomePage() {
 
     fetchPokemonData();
   }, []);
-
-  const getEvolutionChain = (chain, currentPokemon) => {
-    let preEvolution = "nn";
-    let evolution = "nn";
-    const findEvolutions = (chain, currentPokemon, previousPokemon = null) => {
-      if (chain.species.name === currentPokemon) {
-        if (previousPokemon) {
-          preEvolution = previousPokemon;
-        }
-        if (chain.evolves_to.length > 0) {
-          evolution = chain.evolves_to[0].species.name;
-        }
-      } else {
-        chain.evolves_to.forEach((evoChain) => {
-          findEvolutions(evoChain, currentPokemon, chain.species.name);
-        });
-      }
-    };
-    findEvolutions(chain, currentPokemon);
-    return { preEvolution, evolution };
-  };
-
-  const getEvolutionChainFull = (chain) => {
-    const res = [];
-
-    const findEvolutions = (chain, level = 0) => {
-      const newElement = { name: chain.species.name, level };
-      res.push(newElement);
-
-      if (Array.isArray(chain.evolves_to) && chain.evolves_to.length > 0) {
-        chain.evolves_to.forEach((evolution) => {
-          const evolutionLevel =
-            evolution.evolution_details.length > 0
-              ? evolution.evolution_details[0].min_level
-              : 0;
-          findEvolutions(evolution, evolutionLevel);
-        });
-      }
-    };
-
-    findEvolutions(chain);
-    return res;
-  };
 
   useEffect(() => {
     const personajesFiltrados = pokemonList.filter((poke) =>
