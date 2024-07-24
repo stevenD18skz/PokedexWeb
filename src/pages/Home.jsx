@@ -24,9 +24,6 @@ export function HomePage() {
 
   useEffect(() => {
     setPokemonFiltred(pokemonList);
-  }, [pokemonList]);
-
-  useEffect(() => {
     const personajesFiltrados = pokemonList.filter((poke) =>
       poke?.name.toLowerCase().includes(characterSearch.toLowerCase()),
     );

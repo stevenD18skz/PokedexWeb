@@ -76,7 +76,6 @@ export default function NavBar() {
               <li key={index}>
                 <a href={op[2]} className="block p-2">
                   <div className="hover:bg-primary hover:text-secondary flex flex-col rounded-md text-center">
-                    <p className="text-md">{op[0]}</p>
                     <p className="text-sm">{op[1]}</p>
                   </div>
                 </a>

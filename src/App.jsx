@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to={"/home"} />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/pokedex/:poke" element={<PokemonVista />} />
+          <Route path="/pokedex/:mainId" element={<PokemonVista />} />
           <Route path="/damageCalculator" element={<DamageCalculator />} />
         </Routes>
       </BrowserRouter>

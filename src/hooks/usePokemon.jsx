@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const usePokemon = (url) => {
-  const [pokemon, setPokemon] = useState({});
+  const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -85,7 +85,6 @@ export const usePokemon = (url) => {
         };
 
         console.log(fullData);
-
         setPokemon(fullData);
       } catch (error) {
         console.error("Error fetching data from PokeAPI", error);

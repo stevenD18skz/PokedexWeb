@@ -14,57 +14,20 @@ import TypeSquare from "../components/TypeSquare";
 import { usePokemon } from "../hooks/usePokemon";
 
 export function PokemonVista() {
-  const { poke } = useParams();
-  const [pokemonData, setPokemonData] = useState({
-    id: "",
-    name: "",
-    types: "",
-    image: "",
-    stats: "",
-  });
+  const { mainId } = useParams(); //constante que almacena el nombre o el id del pokemon
 
-  const { pokemon, loading } = usePokemon(
-    `https://pokeapi.co/api/v2/pokemon/${poke}`,
+  const { pokemonData, loading } = usePokemon(
+    `https://pokeapi.co/api/v2/pokemon/${mainId}`,
   );
 
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  const chain = [
-    { name: "caterpie", level: 0 },
-    { name: "metapod", level: 7 },
-    { name: "butterfree", level: 10 },
-  ];
-
-  useEffect(() => {
-    const fetchPokemonData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${poke}`,
-        );
-        const results = response.data;
-
-        const final = {
-          id: results.id,
-          name: results.name,
-          types: results.types.map((typeInfo) => typeInfo.type.name),
-          image: results.sprites.other["official-artwork"].front_default,
-          stats: results.stats,
-        };
-        setPokemonData(final);
-      } catch (error) {
-        console.error("Error fetching data from PokeAPI", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPokemonData();
-  }, [poke]);
-
-  if (isLoading) {
+  if (loading) {
     return <LoadingIcon />;
+  }
+
+  if (!pokemonData) {
+    console.log(pokemonData);
   }
 
   return (
@@ -72,17 +35,25 @@ export function PokemonVista() {
       <NavBar />
       <div className="mx-auto w-full rounded-lg bg-white p-4 shadow-lg md:w-8/12 xl:w-6/12">
         {/* HEADER */}
-        <div className="flex justify-center">
+
+        <div className="flex justify-between">
           <button
-            onClick={() => navigate("/home")}
-            className="my-auto mr-4 rounded-full p-2 text-gray-700 shadow-lg transition-all duration-300 hover:text-blue-500"
+            onClick={() => navigate(`/pokedex/${pokemonData.id - 1}`)}
+            className="my-auto rounded-lg bg-red-500 px-5 py-0.5"
           >
-            🢘
+            &lt;
           </button>
 
-          <p className="my-6 text-center text-5xl font-bold capitalize text-gray-700">
+          <p className="my-6 text-center text-6xl font-bold capitalize text-gray-700">
             {pokemonData.name}
           </p>
+
+          <button
+            onClick={() => navigate(`/pokedex/${pokemonData.id - 1}`)}
+            className="my-auto rounded-lg bg-red-500 px-5 py-0.5"
+          >
+            &gt;
+          </button>
         </div>
 
         {/* image */}
@@ -140,11 +111,22 @@ export function PokemonVista() {
               pokemon.evolutionChain.map((evo, index) => (
                 <React.Fragment key={index}>
                   <div className="flex flex-col items-center">
-                    <img
-                      className="bg-green-00 rounded-full border-4"
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evo.id}.png`}
-                      alt={evo.name}
-                    />
+                    {index > 0 ? (
+                      <a href={`/pokedex/${evo.name}`}>
+                        <img
+                          className="bg-green-00 rounded-full border-4"
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evo.id}.gif`}
+                          alt={evo.name}
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        className="bg-green-00 rounded-full border-4"
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evo.id}.gif`}
+                        alt={evo.name}
+                      />
+                    )}
+
                     <h3 className="capitalize text-gray-700">{evo.name}</h3>
                     <TypeSquare types={["grass", "poison"]} />
                   </div>
@@ -164,3 +146,13 @@ export function PokemonVista() {
     </div>
   );
 }
+
+/*
+<button
+  onClick={() => navigate("/home")}
+  className="my-auto mr-4 rounded-full p-2 text-gray-700 shadow-lg transition-all duration-300 hover:text-blue-500"
+>
+  🢘
+</button>
+
+*/
