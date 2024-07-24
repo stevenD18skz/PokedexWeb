@@ -1,31 +1,60 @@
 //Importacion de bibliotecas
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { dataBar } from "../utils/typeColors";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    setIsScrolled(offset > 59);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="fixed top-0 z-50 w-full bg-gray-900 p-4 shadow-lg transition-all duration-300 ease-in-out">
-      <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold text-white md:text-5xl">
+    <nav
+      className={`fixed top-0 z-50 w-full bg-gray-900 p-4 shadow-lg transition-all duration-300 ease-in-out ${
+        isScrolled ? "h-16" : "h-24"
+      }`}
+    >
+      <div className="flex h-full items-center justify-between">
+        <div
+          className={`origin-top-left rounded-lg p-2 text-white transition-all duration-300 ease-in-out hover:bg-slate-800 hover:text-cyan-200 ${
+            isScrolled ? "text-2xl md:text-xl" : "text-5xl md:text-5xl"
+          } font-bold`}
+        >
           <a href="/">PokeDex</a>
         </div>
 
         <div className="hidden md:flex md:items-center md:space-x-6">
           <ul className="flex items-center space-x-6">
             {dataBar.map((op, index) => (
-              <li key={index}>
+              <li key={index} className="relative">
                 <a href={op[2]} className="block">
-                  <div className="hover:bg-secondary hover:text-primary flex flex-col items-center text-center text-white">
+                  <div className="flex transform flex-col items-center rounded-lg p-1 text-center text-white transition-all duration-300 ease-in-out hover:bg-slate-800 hover:text-cyan-200">
                     <p className="text-lg">{op[0]}</p>
-                    <p className="text-md">{op[1]}</p>
+                    <p
+                      className={`text-md ${
+                        isScrolled
+                          ? "absolute scale-0 opacity-0"
+                          : "scale-100 opacity-100"
+                      }`}
+                    >
+                      {op[1]}
+                    </p>
                   </div>
                 </a>
               </li>

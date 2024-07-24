@@ -68,9 +68,9 @@ export function PokemonVista() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-teal-500 via-blue-500 to-indigo-500 font-mono">
+    <div className="min-h-screen bg-gradient-to-r from-teal-500 via-blue-500 to-indigo-500 pt-20 font-mono">
       <NavBar />
-      <div className="m-auto w-full rounded-lg bg-white p-4 shadow-lg md:w-8/12 xl:w-6/12">
+      <div className="mx-auto w-full rounded-lg bg-white p-4 shadow-lg md:w-8/12 xl:w-6/12">
         {/* HEADER */}
         <div className="flex justify-center">
           <button
@@ -90,7 +90,7 @@ export function PokemonVista() {
           <img
             src={pokemonData.image}
             alt="image"
-            className="rounded-full shadow-lg"
+            className="rounded-full bg-red-400 shadow-lg"
           />
         </div>
 

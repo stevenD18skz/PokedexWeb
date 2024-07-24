@@ -8,7 +8,6 @@ import NavBar from "../components/NavBar";
 import CardPokemon from "../components/CardPokemon";
 import SearchBar from "../components/SearchBar";
 import LoadingIcon from "../components/LoadingIcon";
-import SideBar from "../components/SideBar";
 import Pagination from "../components/Pagination";
 
 export function HomePage() {
@@ -72,7 +71,7 @@ export function HomePage() {
         setIsLoading(true); // Set loading to true before the fetch
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=12",
+          "https://pokeapi.co/api/v2/pokemon?limit=300",
         );
         const results = response.data.results;
 
@@ -125,10 +124,9 @@ export function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-500 font-mono">
+      <div className="min-h-screen bg-slate-500 pt-20 font-mono">
         <NavBar />
-        <SideBar />
-        <div className="m-auto min-h-screen w-8/12 bg-gray-300 p-4 pt-20">
+        <div className="m-auto min-h-screen w-full bg-gray-300 p-4 md:w-10/12 lg:w-9/12">
           <SearchBar />
           <LoadingIcon />
         </div>
@@ -137,10 +135,9 @@ export function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-500 font-mono">
+    <div className="min-h-screen bg-slate-500 pt-20 font-mono">
       <NavBar />
-      <SideBar />
-      <div className="m-auto min-h-screen w-8/12 bg-gray-300 p-4 pt-20">
+      <div className="m-auto min-h-screen w-full bg-gray-300 p-4 md:w-10/12 lg:w-9/12">
         <SearchBar
           characterSearch={characterSearch}
           setCharacterSearch={setCharacterSearch}
