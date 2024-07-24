@@ -26,7 +26,7 @@ export function HomePage() {
         setIsLoading(true); // Set loading to true before the fetch
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=20",
+          "https://pokeapi.co/api/v2/pokemon?limit=500",
         );
         const results = response.data.results;
 
