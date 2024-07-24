@@ -10,6 +10,9 @@ import NavBar from "../components/NavBar";
 import LoadingIcon from "../components/LoadingIcon";
 import TypeSquare from "../components/TypeSquare";
 
+//imprtacino de custom hooks
+import { usePokemon } from "../hooks/usePokemon";
+
 export function PokemonVista() {
   const { poke } = useParams();
   const [pokemonData, setPokemonData] = useState({
@@ -19,6 +22,10 @@ export function PokemonVista() {
     image: "",
     stats: "",
   });
+
+  const { pokemon, loading } = usePokemon(
+    `https://pokeapi.co/api/v2/pokemon/${poke}`,
+  );
 
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
