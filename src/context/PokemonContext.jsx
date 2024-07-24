@@ -60,13 +60,17 @@ export const PokemonProvider = ({ children }) => {
 
         const cachedPokemon = localStorage.getItem("pokemonData");
         if (cachedPokemon) {
-          setPokemonList(JSON.parse(cachedPokemon));
-          setIsLoading(false);
-          return;
+          const parsedPokemon = JSON.parse(cachedPokemon);
+          if (parsedPokemon.length === 400) {
+            // Verifica si la longitud coincide con la esperada
+            setPokemonList(parsedPokemon);
+            setIsLoading(false);
+            return;
+          }
         }
 
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=300",
+          "https://pokeapi.co/api/v2/pokemon?limit=400",
         );
         const results = response.data.results;
 

@@ -14,9 +14,9 @@ import TypeSquare from "../components/TypeSquare";
 import { usePokemon } from "../hooks/usePokemon";
 
 export function PokemonVista() {
-  const { mainId } = useParams(); //constante que almacena el nombre o el id del pokemon
+  const { mainId } = useParams(); // Constante que almacena el nombre o el ID del Pokémon
 
-  const { pokemonData, loading } = usePokemon(
+  const { pokemon, loading } = usePokemon(
     `https://pokeapi.co/api/v2/pokemon/${mainId}`,
   );
 
@@ -26,8 +26,8 @@ export function PokemonVista() {
     return <LoadingIcon />;
   }
 
-  if (!pokemonData) {
-    console.log(pokemonData);
+  if (!pokemon) {
+    return <div>Error loading Pokémon data.</div>;
   }
 
   return (
@@ -38,39 +38,43 @@ export function PokemonVista() {
 
         <div className="flex justify-between">
           <button
-            onClick={() => navigate(`/pokedex/${pokemonData.id - 1}`)}
+            onClick={() =>
+              navigate(`/pokedex/${pokemon.id === 1 ? 400 : pokemon.id - 1}`)
+            }
             className="my-auto rounded-lg bg-red-500 px-5 py-0.5"
           >
             &lt;
           </button>
 
           <p className="my-6 text-center text-6xl font-bold capitalize text-gray-700">
-            {pokemonData.name}
+            {pokemon.name}
           </p>
 
           <button
-            onClick={() => navigate(`/pokedex/${pokemonData.id - 1}`)}
+            onClick={() =>
+              navigate(`/pokedex/${pokemon.id === 400 ? 1 : pokemon.id + 1}`)
+            }
             className="my-auto rounded-lg bg-red-500 px-5 py-0.5"
           >
             &gt;
           </button>
         </div>
 
-        {/* image */}
+        {/* Image */}
         <div className="z-10 flex justify-center">
           <img
-            src={pokemonData.image}
+            src={pokemon.image}
             alt="image"
             className="rounded-full bg-red-400 shadow-lg"
           />
         </div>
 
-        {/* stats */}
+        {/* Stats */}
         <div className="mt-6 w-full rounded-xl bg-gray-100 p-8 pt-24 text-center shadow-lg">
           <p className="my-6 text-3xl font-bold text-blue-600">ABOUT</p>
           <p className="my-6 text-3xl font-bold text-blue-600">BASE STATS</p>
 
-          {pokemonData.stats.map((stat, index) => (
+          {pokemon.stats?.map((stat, index) => (
             <div
               key={index}
               className="m-auto mb-4 flex w-10/12 items-center justify-between rounded-lg bg-white p-2 shadow-md"
@@ -90,9 +94,9 @@ export function PokemonVista() {
                     style={{
                       width: `${(stat.base_stat * 100) / 160}%`,
                       backgroundColor:
-                        (stat.base_stat * 100) / 160 > 66
+                        stat.base_stat >= 80
                           ? "#388E3C"
-                          : (stat.base_stat * 100) / 160 > 33
+                          : stat.base_stat >= 40
                             ? "#FBC02D"
                             : "#D32F2F",
                     }}
@@ -103,7 +107,7 @@ export function PokemonVista() {
           ))}
         </div>
 
-        {/* line evolution */}
+        {/* Evolution Line */}
         <div className="my-28 w-full rounded-xl bg-gray-100 py-12 text-center shadow-lg">
           <h2 className="text-4xl text-gray-700">EVOLUTION</h2>
           <div className="mt-8 flex items-center justify-evenly">
@@ -111,7 +115,7 @@ export function PokemonVista() {
               pokemon.evolutionChain.map((evo, index) => (
                 <React.Fragment key={index}>
                   <div className="flex flex-col items-center">
-                    {index > 0 ? (
+                    {evo.name !== pokemon.name ? (
                       <a href={`/pokedex/${evo.name}`}>
                         <img
                           className="bg-green-00 rounded-full border-4"

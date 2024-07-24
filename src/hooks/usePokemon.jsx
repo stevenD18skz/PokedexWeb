@@ -6,31 +6,6 @@ export const usePokemon = (url) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getEvolutionChain = (chain, currentPokemon) => {
-      let preEvolution = "nn";
-      let evolution = "nn";
-      const findEvolutions = (
-        chain,
-        currentPokemon,
-        previousPokemon = null,
-      ) => {
-        if (chain.species.name === currentPokemon) {
-          if (previousPokemon) {
-            preEvolution = previousPokemon;
-          }
-          if (chain.evolves_to.length > 0) {
-            evolution = chain.evolves_to[0].species.name;
-          }
-        } else {
-          chain.evolves_to.forEach((evoChain) => {
-            findEvolutions(evoChain, currentPokemon, chain.species.name);
-          });
-        }
-      };
-      findEvolutions(chain, currentPokemon);
-      return { preEvolution, evolution };
-    };
-
     const getEvolutionChainFull = async (chain) => {
       const res = [];
       const findEvolutions = async (chain, level = 0) => {
@@ -64,10 +39,6 @@ export const usePokemon = (url) => {
         const evolutionRes = await axios.get(
           speciesRes.data.evolution_chain.url,
         );
-        const evolutionChain = getEvolutionChain(
-          evolutionRes.data.chain,
-          res.data.name,
-        );
         const pokeEvolutionChain = await getEvolutionChainFull(
           evolutionRes.data.chain,
         );
@@ -77,13 +48,11 @@ export const usePokemon = (url) => {
           name: res.data.name,
           color: speciesRes.data.color.name,
           types: res.data.types.map((typeInfo) => typeInfo.type.name),
+          stats: res.data.stats,
           image: res.data.sprites.other["official-artwork"].front_default,
           spriteImage: res.data.sprites.front_default,
-          preEvolution: evolutionChain.preEvolution,
-          evolution: evolutionChain.evolution,
           evolutionChain: pokeEvolutionChain,
         };
-
         console.log(fullData);
         setPokemon(fullData);
       } catch (error) {
