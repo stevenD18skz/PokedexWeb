@@ -33,9 +33,8 @@ export function PokemonVista() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-teal-500 via-blue-500 to-indigo-500 pt-20 font-mono">
       <NavBar />
-      <div className="mx-auto w-full rounded-lg bg-white p-4 shadow-lg md:w-8/12 xl:w-6/12">
+      <div className="mx-auto flex w-full flex-col rounded-lg bg-white p-4 shadow-lg xl:w-10/12">
         {/* HEADER */}
-
         <div className="flex justify-between">
           <button
             onClick={() =>
@@ -60,57 +59,63 @@ export function PokemonVista() {
           </button>
         </div>
 
-        {/* Image */}
-        <div className="z-10 flex justify-center">
-          <img
-            src={pokemon.image}
-            alt="image"
-            className="rounded-full bg-red-400 shadow-lg"
-          />
-        </div>
+        {/** image - stat */}
+        <div className="flex flex-col items-center justify-around">
+          {/* Image */}
+          <div className="">
+            <img
+              src={pokemon.image}
+              alt="image"
+              className="rounded-full bg-green-400 shadow-lg"
+            />
+          </div>
 
-        {/* Stats */}
-        <div className="mt-6 w-full rounded-xl bg-gray-100 p-8 pt-24 text-center shadow-lg">
-          <p className="my-6 text-3xl font-bold text-blue-600">ABOUT</p>
-          <p className="my-6 text-3xl font-bold text-blue-600">BASE STATS</p>
+          {/* Stats */}
+          <div className="rounded-xl bg-gray-100 p-6 text-center shadow-lg">
+            <h2 className="text-3xl font-bold text-cyan-700">ABOUT</h2>
+            <p className="mb-12 text-xl italic text-cyan-900">
+              {pokemon.about}
+            </p>
+            <h2 className="text-3xl font-bold text-cyan-700">BASE STATS</h2>
 
-          {pokemon.stats?.map((stat, index) => (
-            <div
-              key={index}
-              className="m-auto mb-4 flex w-10/12 items-center justify-between rounded-lg bg-white p-2 shadow-md"
-            >
-              <p className="w-1/4 border-r-2 border-solid border-gray-300 pr-2 text-gray-700">
-                {stat.stat.name.toUpperCase()}
-              </p>
-              <div className="flex w-3/4 items-center justify-evenly">
-                <p className="w-1/5 text-gray-700">
-                  {stat.base_stat.toString().length === 2
-                    ? "0" + stat.base_stat
-                    : "" + stat.base_stat}
+            {pokemon.stats?.map((stat, index) => (
+              <div
+                key={index}
+                className="m-auto mb-4 flex w-10/12 items-center justify-between rounded-lg bg-white p-2 shadow-md"
+              >
+                <p className="w-1/4 border-r-2 border-solid border-gray-300 pr-2 text-gray-700">
+                  {stat.stat.name.toUpperCase()}
                 </p>
-                <div className="h-6 w-8/12 overflow-hidden rounded-full bg-gray-200">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${(stat.base_stat * 100) / 160}%`,
-                      backgroundColor:
-                        stat.base_stat >= 80
-                          ? "#388E3C"
-                          : stat.base_stat >= 40
-                            ? "#FBC02D"
-                            : "#D32F2F",
-                    }}
-                  ></div>
+                <div className="flex w-3/4 items-center justify-evenly">
+                  <p className="w-1/5 text-gray-700">
+                    {stat.base_stat.toString().length === 2
+                      ? "0" + stat.base_stat
+                      : "" + stat.base_stat}
+                  </p>
+                  <div className="h-6 w-8/12 overflow-hidden rounded-full bg-gray-200">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${(stat.base_stat * 100) / 160}%`,
+                        backgroundColor:
+                          stat.base_stat >= 80
+                            ? "#388E3C"
+                            : stat.base_stat >= 40
+                              ? "#FBC02D"
+                              : "#D32F2F",
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Evolution Line */}
         <div className="my-28 w-full rounded-xl bg-gray-100 py-12 text-center shadow-lg">
-          <h2 className="text-4xl text-gray-700">EVOLUTION</h2>
-          <div className="mt-8 flex items-center justify-evenly">
+          <h2 className="text-4xl text-cyan-700">EVOLUTION</h2>
+          <div className="mt-8 flex flex-col items-center justify-evenly gap-y-20 md:flex-row">
             {pokemon.evolutionChain && pokemon.evolutionChain.length > 0 ? (
               pokemon.evolutionChain.map((evo, index) => (
                 <React.Fragment key={index}>

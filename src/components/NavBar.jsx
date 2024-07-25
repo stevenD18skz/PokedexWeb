@@ -1,12 +1,11 @@
-//Importacion de bibliotecas
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { dataBar } from "../utils/typeColors";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [tooltip, setTooltip] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -15,6 +14,14 @@ export default function NavBar() {
   const handleScroll = () => {
     const offset = window.scrollY;
     setIsScrolled(offset > 59);
+  };
+
+  const handleMouseEnter = (text) => {
+    setTooltip(text);
+  };
+
+  const handleMouseLeave = () => {
+    setTooltip("");
   };
 
   useEffect(() => {
@@ -42,7 +49,12 @@ export default function NavBar() {
         <div className="hidden md:flex md:items-center md:space-x-6">
           <ul className="flex items-center space-x-6">
             {dataBar.map((op, index) => (
-              <li key={index} className="relative">
+              <li
+                key={index}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(op[1])}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href={op[2]} className="block">
                   <div className="flex transform flex-col items-center rounded-lg p-1 text-center text-white transition-all duration-300 ease-in-out hover:bg-slate-800 hover:text-cyan-200">
                     <p className="text-lg">{op[0]}</p>
@@ -55,6 +67,11 @@ export default function NavBar() {
                     >
                       {op[1]}
                     </p>
+                    {tooltip === op[1] && (
+                      <div className="absolute bottom-0 mt-2 translate-y-full transform rounded bg-gray-700 px-2 py-1 text-white">
+                        {op[1]}
+                      </div>
+                    )}
                   </div>
                 </a>
               </li>
@@ -73,10 +90,19 @@ export default function NavBar() {
             } origin-top-right transform`}
           >
             {dataBar.map((op, index) => (
-              <li key={index}>
+              <li
+                key={index}
+                onMouseEnter={() => handleMouseEnter(op[1])}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href={op[2]} className="block p-2">
                   <div className="hover:bg-primary hover:text-secondary flex flex-col rounded-md text-center">
-                    <p className="text-sm">{op[1]}</p>
+                    <p className="text-sm">{op[0]}</p>
+                    {tooltip === op[1] && (
+                      <div className="absolute bottom-0 mt-2 translate-y-full transform rounded bg-gray-700 px-2 py-1 text-white">
+                        {op[1]}
+                      </div>
+                    )}
                   </div>
                 </a>
               </li>

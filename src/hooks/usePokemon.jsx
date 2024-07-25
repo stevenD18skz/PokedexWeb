@@ -36,6 +36,15 @@ export const usePokemon = (url) => {
       try {
         const res = await axios.get(url);
         const speciesRes = await axios.get(res.data.species.url);
+
+        console.log(speciesRes.data.flavor_text_entries[0].language.name);
+        console.log(speciesRes.data.flavor_text_entries[0].version.name);
+
+        const aboutFiltred = speciesRes.data.flavor_text_entries.filter(
+          (txt) => txt.language.name === "es" && txt.version.name === "x",
+        );
+        console.log();
+
         const evolutionRes = await axios.get(
           speciesRes.data.evolution_chain.url,
         );
@@ -52,8 +61,8 @@ export const usePokemon = (url) => {
           image: res.data.sprites.other["official-artwork"].front_default,
           spriteImage: res.data.sprites.front_default,
           evolutionChain: pokeEvolutionChain,
+          about: aboutFiltred[0].flavor_text,
         };
-        console.log(fullData);
         setPokemon(fullData);
       } catch (error) {
         console.error("Error fetching data from PokeAPI", error);
