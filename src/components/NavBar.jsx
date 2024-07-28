@@ -67,7 +67,8 @@ export default function NavBar() {
                     >
                       {op[1]}
                     </p>
-                    {tooltip === op[1] && (
+
+                    {tooltip === op[1] && isScrolled && (
                       <div className="absolute bottom-0 mt-2 translate-y-full transform rounded bg-gray-700 px-2 py-1 text-white">
                         {op[1]}
                       </div>

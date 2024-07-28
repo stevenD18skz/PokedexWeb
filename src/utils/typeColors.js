@@ -21,7 +21,8 @@ export const typeColors = {
 };
 
 export const dataBar = [
-  ["★", "PokeDex", "/home"],
+  ["⌂", "Home", "/Home"],
+  ["★", "PokeDex", "/pokedexConsole"],
   ["✪", "Cal de Daño", "/damageCalculator"],
   ["✰", "Cal de Captura", "/"],
   ["❂", "Quiz", "/"],
