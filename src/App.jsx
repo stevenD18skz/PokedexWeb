@@ -2,8 +2,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //importaciones de las paginas
-import { HomePage } from "./pages/Home.jsx";
-import { PokemonVista } from "./pages/PokemonVista.jsx";
+import HomePage from "./pages/Home.jsx";
+import PokemonVista from "./pages/PokemonVista.jsx";
 import DamageCalculator from "./pages/DamageCalculator.jsx";
 import Pokedex from "./pages/Pokedex.jsx";
 

@@ -37,17 +37,14 @@ export const usePokemon = (url) => {
         const res = await axios.get(url);
         const speciesRes = await axios.get(res.data.species.url);
 
-        console.log(speciesRes.data.flavor_text_entries[0].language.name);
-        console.log(speciesRes.data.flavor_text_entries[0].version.name);
-
         const aboutFiltred = speciesRes.data.flavor_text_entries.filter(
           (txt) => txt.language.name === "es" && txt.version.name === "x",
         );
-        console.log();
 
         const evolutionRes = await axios.get(
           speciesRes.data.evolution_chain.url,
         );
+
         const pokeEvolutionChain = await getEvolutionChainFull(
           evolutionRes.data.chain,
         );
@@ -59,7 +56,7 @@ export const usePokemon = (url) => {
           types: res.data.types.map((typeInfo) => typeInfo.type.name),
           stats: res.data.stats,
           image: res.data.sprites.other["official-artwork"].front_default,
-          spriteImage: res.data.sprites.front_default,
+          //spriteImage: res.data.sprites.front_default,
           evolutionChain: pokeEvolutionChain,
           about: aboutFiltred[0].flavor_text,
         };

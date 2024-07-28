@@ -1,19 +1,12 @@
 //Importaciones de bibliotecas
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 //Importaciones de componentes
 import NavBar from "../components/NavBar";
-import CardPokemon from "../components/CardPokemon";
-import SearchBar from "../components/SearchBar";
-import LoadingIcon from "../components/LoadingIcon";
-import Pagination from "../components/Pagination";
 
 //importacion de hooks y contextos
-import { useListPokemon } from "../context/PokemonContext";
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div
       className="min-w-screen relative min-h-screen bg-cover bg-center bg-no-repeat"
@@ -34,5 +27,3 @@ export function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

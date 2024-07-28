@@ -13,7 +13,7 @@ import TypeSquare from "../components/TypeSquare";
 //imprtacino de custom hooks
 import { usePokemon } from "../hooks/usePokemon";
 
-export function PokemonVista() {
+export default function PokemonVista() {
   const { mainId } = useParams(); // Constante que almacena el nombre o el ID del Pokémon
 
   const { pokemon, loading } = usePokemon(
