@@ -1,10 +1,11 @@
 //Importacion de bibliotecas
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //Importacion de componentes
 import TypeSquare from "./TypeSquare";
 
 export default function CardPokemon({ data }) {
+  const [color, setColor] = useState();
   const dataColor = {
     green: {
       shadow: "#025951",
@@ -13,21 +14,24 @@ export default function CardPokemon({ data }) {
     },
   };
 
-  const dynamicBackgroundColor = {
-    backgroundColor: data.color,
+  useEffect(() => {}, []);
+
+  console.log(data);
+
+  const colorBase = data.color;
+
+  const difusionTailwind = `w-full rounded-t-3xl bg-gradient-to-b from-${colorBase}-300 via-${colorBase}-600`;
+
+  const difusionCss = {
+    background: "linear-gradient(to bottom, #68D391, #2F855A, #22543D)",
   };
 
   return (
     <div
-      className={`w-full transform overflow-hidden rounded-3xl bg-gray-200 shadow-xl shadow-gray-500/50 transition duration-500 hover:-translate-y-3 hover:shadow-gray-600/70`}
+      className={`w-full transform overflow-hidden rounded-3xl bg-gray-900 shadow-xl shadow-gray-500/50 transition duration-500 hover:-translate-y-3 hover:shadow-gray-600/70`}
     >
       <a href={`http://localhost:5173/pokedex/${data.name}`}>
-        <img
-          style={{ backgroundColor: dynamicBackgroundColor.backgroundColor }}
-          className={`w-full rounded-t-3xl`}
-          src={data.image}
-          alt={data.name}
-        />
+        <img className={difusionTailwind} src={data.image} alt={data.name} />
       </a>
 
       <div className="p-3">

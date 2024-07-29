@@ -2,7 +2,7 @@
   --primary: #03dac6;
   --secondary: white;
   --background: #121212;
-  --box-background: #1e1e1e;
+  --box-background: #8c1e1e; /*#1e1e1e;*/
 }
 
 * {
@@ -27,6 +27,7 @@
 
 .input__field {
   outline: 1.5px solid var(--secondary);
+  width: 100%;
   font-size: 1rem;
   border-radius: 0.25rem;
   color: var(--secondary);
