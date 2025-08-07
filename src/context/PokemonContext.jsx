@@ -1,5 +1,7 @@
 // PokemonContext.js
 import { createContext, useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+
 import axios from "axios";
 
 const PokemonContext = createContext();
@@ -120,4 +122,8 @@ export const PokemonProvider = ({ children }) => {
       {children}
     </PokemonContext.Provider>
   );
+};
+
+PokemonProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
