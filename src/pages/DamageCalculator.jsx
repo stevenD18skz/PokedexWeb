@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react";
 
 //Importacion de componentes
-import NavBar from "../components/NavBar";
-import SelectStandar from "../components/SelectStandar";
-import Autocomplete from "../components/AutoComplete";
+import NavBar from "../components/ui/NavBar";
+import SelectStandar from "../components/damageCalculator/SelectStandar";
+import Autocomplete from "../components/damageCalculator/AutoComplete";
 
 //Importacion de contexto y hooks
-import { useListPokemon } from "../context/PokemonContext";
-import InputStandar from "../components/InputStandar";
+import { useListPokemon } from "../context/useListPokemon";
+import InputStandar from "../components/damageCalculator/InputStandar";
 
 import "../assets/eye-off.svg";
 import "../assets/eye.svg";

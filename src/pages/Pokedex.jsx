@@ -2,14 +2,14 @@
 import { useState, useEffect } from "react";
 
 //Importaciones de componentes
-import NavBar from "../components/NavBar";
-import CardPokemon from "../components/CardPokemon";
-import SearchBar from "../components/SearchBar";
-import LoadingIcon from "../components/LoadingIcon";
-import Pagination from "../components/Pagination";
+import NavBar from "../components/ui/NavBar";
+import CardPokemon from "../components/pokedex/CardPokemon";
+import SearchBar from "../components/pokedex/SearchBar";
+import LoadingIcon from "../components/ui/LoadingIcon";
+import Pagination from "../components/pokedex/Pagination";
 
 //importacion de hooks y contextos
-import { useListPokemon } from "../context/PokemonContext";
+import { useListPokemon } from "../context/useListPokemon";
 
 export default function Pokedex() {
   const { pokemonList, isLoading } = useListPokemon();

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import "../styles/input.css";
+import "../../styles/input.css";
 
 export default function InputStandar({ value, formulario, setFormulario }) {
   const handleChange = (e) => {

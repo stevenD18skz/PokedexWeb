@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 //Importacion de componentes
-import TypeSquare from "./TypeSquare";
+import TypeSquare from "../ui/TypeSquare";
 
 export default function CardPokemon({ data }) {
   const colorBase = data.color;

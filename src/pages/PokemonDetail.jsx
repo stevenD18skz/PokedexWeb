@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 //Importaciones de componentes
-import NavBar from "../components/NavBar";
-import LoadingIcon from "../components/LoadingIcon";
-import TypeSquare from "../components/TypeSquare";
+import NavBar from "../components/ui/NavBar";
+import LoadingIcon from "../components/ui/LoadingIcon";
+import TypeSquare from "../components/ui/TypeSquare";
 
 //imprtacino de custom hooks
 import { usePokemon } from "../hooks/usePokemon";

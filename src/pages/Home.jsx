@@ -1,7 +1,7 @@
 //Importaciones de bibliotecas
 
 //Importaciones de componentes
-import NavBar from "../components/NavBar";
+import NavBar from "../components/ui/NavBar";
 
 //importacion de hooks y contextos
 

@@ -10,7 +10,7 @@ import CaptureCalculator from "./pages/CaptureCalculator.jsx";
 import Quiz from "./pages/Quiz.jsx";
 
 //importacinon de hooks y contextos
-import { PokemonProvider } from "./context/PokemonContext.jsx";
+import { PokemonProvider } from "./context/PokemonProvider.jsx";
 
 function App() {
   return (

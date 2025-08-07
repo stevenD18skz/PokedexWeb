@@ -1,5 +1,5 @@
 //Importacion de bibliotecas
-import { typeColors } from "../utils/typeColors";
+import { typeColors } from "../../utils/typeColors";
 
 /**
  * OBSERVACIONES
