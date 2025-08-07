@@ -2,6 +2,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //Importaciones de componentes
 import NavBar from "../components/NavBar";
@@ -119,13 +120,13 @@ export default function PokemonDetail() {
                 <React.Fragment key={index}>
                   <div className="flex flex-col items-center">
                     {evo.name !== pokemon.name ? (
-                      <a href={`/pokedex/${evo.name}`}>
+                      <Link to={`/pokedex/${evo.name}`}>
                         <img
                           className="bg-green-00 rounded-full border-4"
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${evo.id}.gif`}
                           alt={evo.name}
                         />
-                      </a>
+                      </Link>
                     ) : (
                       <img
                         className="bg-green-00 rounded-full border-4"

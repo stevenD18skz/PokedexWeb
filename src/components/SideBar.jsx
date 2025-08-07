@@ -1,5 +1,6 @@
 //Importacion de bibliotecas
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function SideBar() {
       >
         {dataBar.map((op, index) => (
           <li key={index}>
-            <a href={op[2]} className="block p-2">
+            <Link to={op[2]} className="block p-2">
               <div
                 className={`flex ${
                   isOpen ? "flex-row justify-center" : "flex-col items-center"
@@ -42,7 +43,7 @@ export default function SideBar() {
                   {op[1]}
                 </p>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
