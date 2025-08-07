@@ -1,30 +1,14 @@
 //Importacion de bibliotecas
-import React, { useEffect, useState } from "react";
+
+import PropTypes from "prop-types";
 
 //Importacion de componentes
 import TypeSquare from "./TypeSquare";
 
 export default function CardPokemon({ data }) {
-  const [color, setColor] = useState();
-  const dataColor = {
-    green: {
-      shadow: "#025951",
-      hoverShadow: "#025951",
-      backG: "#038C3E",
-    },
-  };
-
-  useEffect(() => {}, []);
-
-  console.log(data);
-
   const colorBase = data.color;
 
   const difusionTailwind = `w-full rounded-t-3xl bg-gradient-to-b from-${colorBase}-300 via-${colorBase}-600`;
-
-  const difusionCss = {
-    background: "linear-gradient(to bottom, #68D391, #2F855A, #22543D)",
-  };
 
   return (
     <div
@@ -76,3 +60,15 @@ export default function CardPokemon({ data }) {
     </div>
   );
 }
+
+CardPokemon.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    types: PropTypes.arrayOf(PropTypes.string).isRequired,
+    preEvolution: PropTypes.string.isRequired,
+    evolution: PropTypes.string.isRequired,
+  }).isRequired,
+};

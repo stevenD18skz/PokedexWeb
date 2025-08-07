@@ -1,11 +1,12 @@
 //Importacion de bibliotecas
-import React from "react";
 import { typeColors } from "../utils/typeColors";
 
 /**
  * OBSERVACIONES
  * -modificar si se decice usar un contextno para los colores
  */
+
+import PropTypes from "prop-types";
 
 export default function TypeSquare({ types }) {
   const typesLower = types.map((type) => type.toLowerCase());
@@ -30,3 +31,7 @@ export default function TypeSquare({ types }) {
     </div>
   );
 }
+
+TypeSquare.propTypes = {
+  types: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

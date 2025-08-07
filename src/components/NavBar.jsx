@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
-
-import { dataBar } from "../utils/typeColors";
+import { useState, useEffect } from "react";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [tooltip, setTooltip] = useState("");
+
+  const dataBar = [
+    ["⌂", "Home", "/Home"],
+    ["★", "PokeDex", "/pokedex"],
+    ["✪", "Cal de Daño", "/damageCalculator"],
+    ["✰", "Cal de Captura", "/captureCalculator"],
+    ["❂", "Quiz", "/quiz"],
+  ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

@@ -1,10 +1,16 @@
 //Importacion de bibliotecas
-import React from "react";
-import { useState, useEffect } from "react";
-import { dataBar } from "../utils/typeColors";
+import { useState } from "react";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dataBar = [
+    ["⌂", "Home", "/Home"],
+    ["★", "PokeDex", "/pokedex"],
+    ["✪", "Cal de Daño", "/damageCalculator"],
+    ["✰", "Cal de Captura", "/captureCalculator"],
+    ["❂", "Quiz", "/quiz"],
+  ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

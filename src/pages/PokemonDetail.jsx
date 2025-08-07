@@ -2,8 +2,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 //Importaciones de componentes
 import NavBar from "../components/NavBar";
@@ -13,7 +11,7 @@ import TypeSquare from "../components/TypeSquare";
 //imprtacino de custom hooks
 import { usePokemon } from "../hooks/usePokemon";
 
-export default function PokemonVista() {
+export default function PokemonDetail() {
   const { mainId } = useParams(); // Constante que almacena el nombre o el ID del Pokémon
 
   const { pokemon, loading } = usePokemon(
@@ -155,13 +153,3 @@ export default function PokemonVista() {
     </div>
   );
 }
-
-/*
-<button
-  onClick={() => navigate("/home")}
-  className="my-auto mr-4 rounded-full p-2 text-gray-700 shadow-lg transition-all duration-300 hover:text-blue-500"
->
-  🢘
-</button>
-
-*/

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function SelectStandar({ value, formulario, setFormulario }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,3 +34,9 @@ export default function SelectStandar({ value, formulario, setFormulario }) {
     </div>
   );
 }
+
+SelectStandar.propTypes = {
+  value: PropTypes.string.isRequired,
+  formulario: PropTypes.object.isRequired,
+  setFormulario: PropTypes.func.isRequired,
+};

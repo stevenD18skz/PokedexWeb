@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 export default function SearchBar({ characterSearch, setCharacterSearch }) {
   const handleSubmit = (e) => {
@@ -30,3 +30,8 @@ export default function SearchBar({ characterSearch, setCharacterSearch }) {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  characterSearch: PropTypes.string.isRequired,
+  setCharacterSearch: PropTypes.func.isRequired,
+};

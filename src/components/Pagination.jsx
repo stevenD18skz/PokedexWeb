@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
+import PropTypes from "prop-types";
 
 export default function Pagination({
   pokemonFiltred,
@@ -115,3 +117,10 @@ export default function Pagination({
     </div>
   );
 }
+
+Pagination.propTypes = {
+  pokemonFiltred: PropTypes.array.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+  setCurrentItems: PropTypes.func.isRequired,
+};

@@ -1,5 +1,4 @@
 //Importaciones de bibliotecas
-import React from "react";
 
 //Importaciones de componentes
 import NavBar from "../components/NavBar";

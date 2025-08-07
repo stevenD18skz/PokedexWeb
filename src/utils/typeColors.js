@@ -1,6 +1,6 @@
 // typeColors.js
 export const typeColors = {
-  normal: ["bg-emerald-400", "text-black"],
+  normal: ["bg-gray-400", "text-black"],
   grass: ["bg-emerald-400", "text-black"],
   fire: ["bg-red-500", "text-white"],
   water: ["bg-blue-500", "text-white"],
@@ -13,17 +13,9 @@ export const typeColors = {
   bug: ["bg-green-600", "text-white"],
   rock: ["bg-gray-700", "text-white"],
   ghost: ["bg-purple-700", "text-white"],
-  poison: ["bg-indigo-800", "text-white"],
+  poison: ["bg-purple-800", "text-white"],
   dragon: ["bg-indigo-600", "text-white"],
   dark: ["bg-gray-900", "text-white"],
   steel: ["bg-gray-500", "text-black"],
   fairy: ["bg-pink-300", "text-black"],
 };
-
-export const dataBar = [
-  ["⌂", "Home", "/Home"],
-  ["★", "PokeDex", "/pokedexConsole"],
-  ["✪", "Cal de Daño", "/damageCalculator"],
-  ["✰", "Cal de Captura", "/"],
-  ["❂", "Quiz", "/"],
-];

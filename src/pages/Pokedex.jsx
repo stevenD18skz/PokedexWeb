@@ -1,7 +1,5 @@
 //Importaciones de bibliotecas
-import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 //Importaciones de componentes
 import NavBar from "../components/NavBar";

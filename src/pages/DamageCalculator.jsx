@@ -1,10 +1,8 @@
 //Importacion de bibliotecas
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 //Importacion de componentes
 import NavBar from "../components/NavBar";
-import SideBar from "../components/SideBar";
-import CardPokemon from "../components/CardPokemon";
 import SelectStandar from "../components/SelectStandar";
 import Autocomplete from "../components/AutoComplete";
 
@@ -18,7 +16,6 @@ import "../assets/eye.svg";
 export default function DamageCalculator() {
   const { pokemonList, isLoading } = useListPokemon();
   const [opcionesPoke, setOpcionesPoke] = useState([]);
-  const [load, setLoad] = useState(true);
 
   const [formulario, setFormulario] = useState({
     Level: 0,
@@ -36,7 +33,6 @@ export default function DamageCalculator() {
     }
 
     fectOption();
-    setLoad(false);
   }, [pokemonList]);
 
   if (isLoading) {

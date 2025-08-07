@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export default function Autocomplete({
   value,
@@ -65,3 +66,10 @@ export default function Autocomplete({
     </div>
   );
 }
+
+Autocomplete.propTypes = {
+  value: PropTypes.string.isRequired,
+  formulario: PropTypes.object.isRequired,
+  setFormulario: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
